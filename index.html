@@ -1,0 +1,84 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Write Markdown as Task descriptions for your students" />
+    <meta name="show-in" content="*" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css" integrity="sha512-hasIneQUHlh06VNBe7f6ZcHmeRTLIaQWFd43YriJ0UND19bvYRauxthDg8E4eVNPm9bRUhr5JGeqH7FRFXQu5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js"></script>
+
+    <script src="https://edrys-org.github.io/edrys/module/edrys.js"></script>
+    <script defer src="https://edrys-org.github.io/edrys/module/vendor/alpine.min.js"></script>
+    <link rel="stylesheet" href="https://edrys-org.github.io/edrys/module/vendor/water.min.css" />
+    <link rel="stylesheet" href="https://edrys-org.github.io/edrys/module/vendor/open-iconic/css/open-iconic.min.css" />
+
+    <script>
+        function init() {
+            if (window.md) return
+
+            window.md = markdownit()
+            
+            // enable everything
+            window.md.options.html = true
+            window.md.options.linkify = true
+            window.md.options.typographer = true
+
+            window.md.options.highlight = function (str, lang) {
+                if (lang && hljs.getLanguage(lang)) {
+                    try {
+                        return  '<pre class="hljs"><code style="border-radius: 0px">' +
+                                hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
+                                '</code></pre>';
+                    } catch (__) {}
+                }
+
+                return '<pre class="hljs"><code style="border-radius: 0px">' + md.utils.escapeHtml(str) + '</code></pre>';
+            }
+        }
+
+        function render(content) {
+            if (window.md) {
+                document.body.innerHTML = md.render(content)
+            }
+        }
+
+        window.onload = init
+
+        Edrys.onReady(() => {
+            console.log("Markdown-IT loaded")
+
+            init()
+
+            if (Edrys.module.config) {
+                switch(Edrys.role) {
+                    case "teacher": {
+                        render(Edrys.config.teacher || Edrys.config.md)
+                        break
+                    }
+                    case "student": {
+                        render(Edrys.config.student || Edrys.config.md)
+                        break
+                    }
+                    case "station": {
+                        render(Edrys.config.station || Edrys.config.md)
+                        break
+                    }
+                }
+            }
+        });
+    </script>
+
+    <title>Edrys - Markdown-IT module</title>
+</head>
+<body>
+    <h1>Edrys Markdown-IT Module</h1>
+
+    <p>
+        Please refer to the <a href="https://github.com/Cross-Lab-Project/edrys_module-markdown-it">README</a> of this project.
+    </p>
+</body>
+</html>
