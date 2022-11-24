@@ -1,0 +1,25 @@
+{
+  "name": "edrys_module-markdown-it",
+  "version": "1.0.0",
+  "description": "Markdown interpreter module for edrys",
+  "scripts": {
+    "build": "npx parcel build src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cross-Lab-Project/edrys_module-markdown-it.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cross-Lab-Project/edrys_module-markdown-it/issues"
+  },
+  "homepage": "https://github.com/Cross-Lab-Project/edrys_module-markdown-it#readme",
+  "devDependencies": {
+    "parcel": "^2.8.0"
+  },
+  "dependencies": {
+    "markdown-it-textual-uml": "^0.12.0"
+  }
+}
