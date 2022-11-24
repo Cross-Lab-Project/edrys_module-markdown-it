@@ -48,10 +48,10 @@ https://cross-lab-project.github.io/edrys_module-markdown-it/index.html
 ## Configuration
 
 To simplify the usage, we provide the example in Yaml and not in JSON, you have to convert it by your own.
-Additionally you can modify only the general configuration:
+You can modify only the general configuration, it will be presented to all and if you add different strings to other roles teacher/students/station, then this content will be presented additionally.
 
 ``` yaml
-md: |-
+|-
   # Main Document
 
   This document will be shown to all users,
@@ -79,22 +79,4 @@ md: |-
     1 -> 2 -> { 4, 5 };
     1 -> 3 -> { 6, 7 };
   }
-
-student: |-
-  # Student documentation
-
-  This content will only be shown to users with the role student.
-  If it does not exist, md is used as fallback.
-
-teacher: |-
-  # Teacher documentation
-
-  This content will only be shown to users with the role teacher.
-  If it does not exist, md is used as fallback.
-
-station: |-
-  # Station documentation
-
-  This content will only be shown to users with the role station.
-  If it does not exist, md is used as fallback.
 ```

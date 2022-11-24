@@ -89,22 +89,11 @@
 
             init()
 
-            if (Edrys.module.config) {
-                switch (Edrys.role) {
-                    case "teacher": {
-                        render(Edrys.module.config.teacher || Edrys.module.config.md)
-                        break
-                    }
-                    case "student": {
-                        render(Edrys.module.config.student || Edrys.module.config.md)
-                        break
-                    }
-                    case "station": {
-                        render(Edrys.module.config.station || Edrys.module.config.md)
-                        break
-                    }
-                }
-            }
+            let content = Edrys.module.config || ""
+            
+            content += "\n\n" + Edrys.module[Edrys.role.toLowerCase()+'Config'] || ""
+
+            render(content)
         });
 
     </script>
