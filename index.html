@@ -1,4 +1,6 @@
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +9,15 @@
     <meta name="description" content="Write Markdown as Task descriptions for your students" />
     <meta name="show-in" content="*" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css" integrity="sha512-hasIneQUHlh06VNBe7f6ZcHmeRTLIaQWFd43YriJ0UND19bvYRauxthDg8E4eVNPm9bRUhr5JGeqH7FRFXQu5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it-texmath/texmath.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js"></script>
 
     <script src="https://edrys-org.github.io/edrys/module/edrys.js"></script>
@@ -21,7 +30,7 @@
             if (window.md) return
 
             window.md = markdownit()
-            
+
             // enable everything
             window.md.options.html = true
             window.md.options.linkify = true
@@ -30,14 +39,29 @@
             window.md.options.highlight = function (str, lang) {
                 if (lang && hljs.getLanguage(lang)) {
                     try {
-                        return  '<pre class="hljs"><code style="border-radius: 0px">' +
-                                hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
-                                '</code></pre>';
+                        return '<pre class="hljs"><code style="border-radius: 0px">' +
+                            hljs.highlight(str, {
+                                language: lang,
+                                ignoreIllegals: true
+                            }).value +
+                            '</code></pre>';
                     } catch (__) {}
                 }
 
-                return '<pre class="hljs"><code style="border-radius: 0px">' + md.utils.escapeHtml(str) + '</code></pre>';
+                return '<pre class="hljs"><code style="border-radius: 0px">' + md.utils.escapeHtml(str) +
+                    '</code></pre>';
             }
+
+            window.md.use(
+                texmath, {
+                    engine: katex,
+                    delimiters: 'dollars',
+                    katexOptions: {
+                        macros: {
+                            "\\RR": "\\mathbb{R}"
+                        }
+                    }
+                });
         }
 
         function render(content) {
@@ -54,7 +78,7 @@
             init()
 
             if (Edrys.module.config) {
-                switch(Edrys.role) {
+                switch (Edrys.role) {
                     case "teacher": {
                         render(Edrys.module.config.teacher || Edrys.module.config.md)
                         break
@@ -74,11 +98,14 @@
 
     <title>Edrys - Markdown-IT module</title>
 </head>
+
 <body>
     <h1>Edrys Markdown-IT Module</h1>
 
     <p>
-        Please refer to the <a href="https://github.com/Cross-Lab-Project/edrys_module-markdown-it">README</a> of this project.
+        Please refer to the <a href="https://github.com/Cross-Lab-Project/edrys_module-markdown-it">README</a> of this
+        project.
     </p>
 </body>
+
 </html>
