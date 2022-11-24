@@ -56,15 +56,15 @@
             if (Edrys.module.config) {
                 switch(Edrys.role) {
                     case "teacher": {
-                        render(Edrys.config.teacher || Edrys.config.md)
+                        render(Edrys.module.config.teacher || Edrys.module.config.md)
                         break
                     }
                     case "student": {
-                        render(Edrys.config.student || Edrys.config.md)
+                        render(Edrys.module.config.student || Edrys.module.config.md)
                         break
                     }
                     case "station": {
-                        render(Edrys.config.station || Edrys.config.md)
+                        render(Edrys.module.config.station || Edrys.module.config.md)
                         break
                     }
                 }
