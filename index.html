@@ -91,7 +91,7 @@
 
             let content = Edrys.module.config || ""
             
-            content += "\n\n" + Edrys.module[Edrys.role.toLowerCase()+'Config'] || ""
+            content += "\n\n" + ( Edrys.module[Edrys.role.toLowerCase()+'Config'] || "" )
 
             render(content)
         });
