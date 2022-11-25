@@ -45,6 +45,10 @@ Import the following URL to your document:
 https://cross-lab-project.github.io/edrys_module-markdown-it/index.html
 ```
 
+If your edrys supports Yaml-configs, you can also load:
+
+`https://raw.githubusercontent.com/cross-lab-project/edrys_module-markdown-it/1.0.0/module.yaml`
+
 ## Configuration
 
 To simplify the usage, we provide the example in Yaml and not in JSON, you have to convert it by your own.
