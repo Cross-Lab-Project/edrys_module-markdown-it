@@ -1,0 +1,102 @@
+name: Markdown-IT
+
+description: Define classroom-tasks with simple Markdown
+
+show-in:
+  - '*'
+
+load:
+  scripts:
+    - dist/index.js   
+    - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js
+    - https://cdn.jsdelivr.net/npm/markdown-it-texmath/texmath.min.js
+    - https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js
+    - https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.2.2/mermaid.min.js
+    - https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js
+    - https://edrys-org.github.io/edrys/module/vendor/alpine.min.js
+    - https://edrys-org.github.io/edrys/module/edrys.js
+
+  links:
+    - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css
+    - https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css
+    - https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css
+    - https://edrys-org.github.io/edrys/module/vendor/water.min.css
+    - https://edrys-org.github.io/edrys/module/vendor/open-iconic/css/open-iconic.min.css
+
+body: ""
+
+main: |-
+  function init() {
+    if (window.md) return
+
+    if (!window.markdownItTextualUml) {
+      setTimeout(init, 100)
+      return
+    }
+
+    window.md = markdownit()
+
+    // enable everything
+    window.md.options.html = true
+    window.md.options.linkify = true
+    window.md.options.typographer = true
+
+    window.md.options.highlight = function (str, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+            try {
+                return '<pre class="hljs"><code style="border-radius: 0px">' +
+                    hljs.highlight(str, {
+                        language: lang,
+                        ignoreIllegals: true
+                    }).value +
+                    '</code></pre>';
+            } catch (__) {}
+        }
+
+        return '<pre class="hljs"><code style="border-radius: 0px">' + md.utils.escapeHtml(str) +
+            '</code></pre>';
+    }
+
+    window.md.use(
+            texmath, {
+                engine: katex,
+                delimiters: 'dollars',
+                katexOptions: {
+                    macros: {
+                        "\\RR": "\\mathbb{R}"
+                    }
+                }
+            })
+        .use(window.markdownItTextualUml)
+  }
+
+  function render(content) {
+      if (window.md) {
+          document.body.innerHTML = md.render(content)
+
+          setTimeout(() => {
+              console.warn("loading mermaid")
+              mermaid.initialize({
+                  startOnLoad: true
+              })
+          }, 1000)
+      } else {
+        setTimeout(() => {
+          render(content)
+        }, 100)
+      }
+  }
+
+  window.onload = init
+
+  Edrys.onReady(() => {
+      console.log("Markdown-IT loaded")
+
+      init()
+
+      let content = Edrys.module.config || ""
+      
+      content += "\n\n" + ( Edrys.module[Edrys.role.toLowerCase()+'Config'] || "" )
+
+      render(content)
+  });
