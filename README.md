@@ -47,7 +47,9 @@ https://cross-lab-project.github.io/edrys_module-markdown-it/index.html
 
 If your edrys supports Yaml-configs, you can also load:
 
-`https://raw.githubusercontent.com/cross-lab-project/edrys_module-markdown-it/1.0.0/module.yaml`
+`https://raw.githubusercontent.com/cross-lab-project/edrys_module-markdown-it/2.0.0/module.yaml`
+
+`https://raw.githubusercontent.com/cross-lab-project/edrys_module-markdown-it/2.0.0/index.html`
 
 ## Configuration
 
