@@ -54,7 +54,7 @@ If your edrys supports Yaml-configs, you can also load:
 To simplify the usage, we provide the example in Yaml and not in JSON, you have to convert it by your own.
 You can modify only the general configuration, it will be presented to all and if you add different strings to other roles teacher/students/station, then this content will be presented additionally.
 
-``` yaml
+```` yaml
 |-
   # Main Document
 
@@ -78,9 +78,10 @@ You can modify only the general configuration, it will be presented to all and i
 
   and next to diagrams:
 
-    ```dot
+  ```dot
   digraph example1 {
     1 -> 2 -> { 4, 5 };
     1 -> 3 -> { 6, 7 };
   }
-```
+  ```
+````
