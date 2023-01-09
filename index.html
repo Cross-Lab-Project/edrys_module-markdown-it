@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta name="fetch" content="true">
+
     <meta name="description" content="Write Markdown as Task descriptions for your students" />
     <meta name="show-in" content="*" />
 
@@ -32,6 +34,11 @@
     <script>
         function init() {
             if (window.md) return
+
+            if (!window.markdownItTextualUml) {
+                setTimeout(init, 100)
+                return
+            }
 
             window.md = markdownit()
 
@@ -79,6 +86,10 @@
                         startOnLoad: true
                     })
                 }, 1000)
+            } else {
+                setTimeout(() => {
+                    render(content)
+                }, 100)
             }
         }
 
@@ -90,24 +101,18 @@
             init()
 
             let content = Edrys.module.config || ""
-            
-            content += "\n\n" + ( Edrys.module[Edrys.role.toLowerCase()+'Config'] || "" )
+
+            content += "\n\n" + (Edrys.module[Edrys.role.toLowerCase() + 'Config'] || "")
 
             render(content)
         });
-
     </script>
 
     <title>Edrys - Markdown-IT module</title>
 </head>
 
 <body>
-    <h1>Edrys Markdown-IT Module</h1>
-
-    <p>
-        Please refer to the <a href="https://github.com/Cross-Lab-Project/edrys_module-markdown-it">README</a> of this
-        project.
-    </p>
+    
 </body>
 
 </html>
