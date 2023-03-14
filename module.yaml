@@ -1,6 +1,6 @@
 name: Markdown-IT
 
-description: Define classroom-tasks with simple Markdown
+description: Write Markdown as task-descriptions for your students, this markdown interpreter additionally allows to integrate formulas, ASCII-art and videos. For more information, see <br><a href='https://github.com/Cross-Lab-Project/edrys_module-markdown-it' target='_blank'>https://github.com/Cross-Lab-Project/edrys_module-markdown-it</a>
 
 show-in:
   - '*'
