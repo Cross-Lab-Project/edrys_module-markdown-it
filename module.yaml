@@ -13,15 +13,15 @@ load:
     - https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js
     - https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.2.2/mermaid.min.js
     - https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js
-    - https://edrys-org.github.io/edrys/module/vendor/alpine.min.js
-    - https://edrys-org.github.io/edrys/module/edrys.js
+    - https://cross-lab-project.github.io/edrys-Lite/module/vendor/alpine.min.js
+    - https://cross-lab-project.github.io/edrys-Lite/module/edrys.js
 
   links:
     - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css
     - https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css
     - https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css
-    - https://edrys-org.github.io/edrys/module/vendor/water.min.css
-    - https://edrys-org.github.io/edrys/module/vendor/open-iconic/css/open-iconic.min.css
+    - https://cross-lab-project.github.io/edrys-Lite/module/vendor/water.min.css
+    - https://cross-lab-project.github.io/edrys-Lite/module/vendor/open-iconic/css/open-iconic.min.css
 
 body: ""
 
